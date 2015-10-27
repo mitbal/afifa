@@ -16,9 +16,20 @@ for line1 in f1.readlines():
 	j = int(float(line2[:-1]))-1
 	conf_matrix[i][j] += 1
 
-print(' '.join(map(lambda x: str(x), range(4))))
+print(' '.join(map(lambda x: str(x), range(1,5))))
 for i in xrange(4):
 	row = str(i+1)+' '
 	for j in xrange(4):
 		row += str(conf_matrix[i][j]) +' '
 	print row
+
+# Calculate accuracy
+acc = 0
+total = 0
+for i in xrange(4):
+	for j in xrange(4):
+		if i==j:
+			acc += conf_matrix[i][j]
+		total += conf_matrix[i][j]
+
+print 'acc', (float(acc)/total)*100
