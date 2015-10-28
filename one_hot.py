@@ -1,4 +1,5 @@
 # Perform one hot encoding
+import sys
 
 def is_number(s):
     try:
@@ -7,8 +8,13 @@ def is_number(s):
     except ValueError:
         return False
 
-fin = open('../payment/train.csv', 'r')
-fout = open('../payment/train_onehot.csv', 'w')
+print(len(sys.argv))
+if len(sys.argv) < 3:
+    print 'The usage is one_hot.py <input_file> <output_file>'
+    sys.exit(0)
+
+fin = open(sys.argv[1], 'r')
+fout = open(sys.argv[2], 'w')
 dataset = []
 symbols = set()
 
