@@ -3,12 +3,13 @@
 
 import sys
 
-f1 = open('../payment/labels', 'r')
-f2 = open('../payment/prediction', 'r')
+f1 = open(sys.argv[1], 'r')
+f2 = open(sys.argv[2], 'r')
+nc = int(sys.argv[3])
 
 label = []
 prediction = []
-conf_matrix = [[0]*4 for x in xrange(4)]
+conf_matrix = [[0]*nc for x in xrange(nc)]
 
 for line1 in f1.readlines():
 	line2 = f2.readline()
@@ -16,18 +17,18 @@ for line1 in f1.readlines():
 	j = int(float(line2[:-1]))-1
 	conf_matrix[i][j] += 1
 
-print(' '.join(map(lambda x: str(x), range(1,5))))
-for i in xrange(4):
+print(' '.join(map(lambda x: str(x), range(1,nc+1))))
+for i in xrange(nc):
 	row = str(i+1)+' '
-	for j in xrange(4):
+	for j in xrange(nc):
 		row += str(conf_matrix[i][j]) +' '
 	print row
 
 # Calculate accuracy
 acc = 0
 total = 0
-for i in xrange(4):
-	for j in xrange(4):
+for i in xrange(nc):
+	for j in xrange(nc):
 		if i==j:
 			acc += conf_matrix[i][j]
 		total += conf_matrix[i][j]
