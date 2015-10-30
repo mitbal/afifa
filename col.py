@@ -3,6 +3,10 @@
 
 import sys
 
+if len(sys.argv) < 5:
+	print 'Usage python col.py <input_file> <output_file> <label_column> <value>'
+	sys.exit(1)
+
 fin = open(sys.argv[1], 'r')
 fout = open(sys.argv[2], 'w')
 class_col = int(sys.argv[3])
