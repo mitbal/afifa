@@ -54,6 +54,7 @@ for (nrow,row) in enumerate(dataset):
                 if sym == col:
                     sym_row[idx] = '1'
     prow = num_row+','.join(sym_row)+','+labels[nrow]
-    print prow
+    if nrow % 10000 == 0:
+        print prow
     fout.write(prow +'\n')
 fout.close()
