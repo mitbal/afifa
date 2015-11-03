@@ -13,8 +13,13 @@ class_col = int(sys.argv[3])
 inc = int(sys.argv[4])
 
 for line in fin.readlines():
+	line = line.rstrip()
 	tokens = line.split(' ')
-	row = str(int(tokens[class_col])+inc)+' ' +' '.join(tokens[1:])
-	fout.write(row)
+	row = ''
+	if len(tokens) <= 1:
+		row = str(int(tokens[class_col])+inc)
+	else:
+		row = str(int(tokens[class_col])+inc)+' ' +' '.join(tokens[1:])
+	fout.write(row+'\n')
 
 print 'done'
