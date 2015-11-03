@@ -3,6 +3,10 @@
 
 import sys
 
+if len(sys.argv) < 4:
+	print 'usage: <labels.txt> <prediction.txt> <number_of_class>'
+	sys.exit(1)
+
 f1 = open(sys.argv[1], 'r')
 f2 = open(sys.argv[2], 'r')
 nc = int(sys.argv[3])
