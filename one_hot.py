@@ -56,6 +56,7 @@ for (nrow,row) in enumerate(dataset):
                     sym_row[idx] = '1'
     prow = num_row+','.join(sym_row)+','+labels[nrow]
     if nrow % 10000 == 0:
-        print prow
+        # print prow
+        print str(nrow)+'/'+str(len(dataset))
     fout.write(prow +'\n')
 fout.close()
