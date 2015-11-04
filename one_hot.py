@@ -25,9 +25,9 @@ labels = []
 labels_numeric = ''
 for line in fin.readlines():
     tokens = line[:-1].split(',')
-    for token in tokens[:-1]:
+    for (ncol,token) in enumerate(tokens[:-1]):
         if not is_number(token) and token != '':
-            symbols.add(token)
+            symbols.add(header[ncol]+'_'+token)
     labels.append(tokens[-1].rstrip())
     dataset.append(tokens[:-1])
 fin.close()
@@ -38,20 +38,21 @@ for (idx, col) in enumerate(row):
     if is_number(col):
         labels_numeric += header[idx]+','
 
-symbols = list(symbols)
+symbols = sorted(list(symbols))
 labels_symbols = ','.join(map(lambda x: 'c_'+x, symbols))
-header = labels_numeric+labels_symbols+',class'
-print header
-fout.write(header+'\n')
+outheader = labels_numeric+labels_symbols+',class'
+print outheader
+fout.write(outheader+'\n')
 for (nrow,row) in enumerate(dataset):
     sym_row = ['0']*len(symbols)
     num_row = ''
-    for col in row:
+    for (ncol,col) in enumerate(row):
         if is_number(col):
             num_row += col+','
         else:
             for (idx, sym) in enumerate(symbols):
-                if sym == col:
+                #print sym, header[ncol]+'_'+col
+                if sym == header[ncol]+'_'+col:
                     sym_row[idx] = '1'
     prow = num_row+','.join(sym_row)+','+labels[nrow]
     if nrow % 10000 == 0:
