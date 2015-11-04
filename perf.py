@@ -38,3 +38,22 @@ for i in xrange(nc):
 		total += conf_matrix[i][j]
 
 print 'acc', (float(acc)/total)*100
+
+# Precision and recall for each classes
+precs = [0]*nc
+recs = [0]*nc
+for i in xrange(nc):
+	precs[i] = conf_matrix[i][i]
+	recs[i] = conf_matrix[i][i]
+	prec_denom = 0
+	rec_denom = 0
+	for j in xrange(nc):
+		if j != i:
+			prec_denom += conf_matrix[i][j]
+			rec_denom += conf_matrix[j][i]
+	precs[i] = precs[i] / prec_denom
+	recs[i] = recs[i] / rec_denom
+
+for i in xrange(nc):
+	print 'precision', i, precs[i]
+	print 'recall', i, recs[i]
