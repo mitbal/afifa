@@ -53,7 +53,7 @@ for i in xrange(nc):
 	if(prec_denom != 0):
 		precs[i] = precs[i] / float(prec_denom)
 	if(rec_denom != 0):
-		recs[i] = recs[i] / rec_denom
+		recs[i] = recs[i] / float(rec_denom)
 
 for i in xrange(nc):
 	print 'class', (i+1)
