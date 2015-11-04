@@ -48,12 +48,13 @@ for i in xrange(nc):
 	prec_denom = 0
 	rec_denom = 0
 	for j in xrange(nc):
-		if j != i:
-			prec_denom += conf_matrix[i][j]
-			rec_denom += conf_matrix[j][i]
-	precs[i] = precs[i] / prec_denom
-	recs[i] = recs[i] / rec_denom
+		prec_denom += conf_matrix[j][i]
+		rec_denom += conf_matrix[i][j]
+	if(prec_denom != 0):
+		precs[i] = precs[i] / float(prec_denom)
+	if(rec_denom != 0):
+		recs[i] = recs[i] / rec_denom
 
 for i in xrange(nc):
-	print 'precision', i, precs[i]
-	print 'recall', i, recs[i]
+	print 'class', (i+1)
+	print 'precision', precs[i], 'recall', recs[i]
