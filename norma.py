@@ -33,7 +33,7 @@ for row in dataset:
 		if idx == numcol:
 			row[idx] = float(row[idx])/stdev
 
-fout = open('normed_'+filename, 'w')
+fout = open(filename+'_n', 'w')
 fout.write(header)
 for row in dataset:
 	fout.write(','.join(map(lambda x: str(x), row)))
