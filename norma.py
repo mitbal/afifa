@@ -10,24 +10,26 @@ filename = sys.argv[1]
 cols = map(lambda x: int(x), sys.argv[2].split(','))
 norm_file = sys.argv[3]
 
-dataset = []
-totalsum = [0]*len(cols)
+# Calculate average
 count = 0
-
-# Read input and count average
+totalsum = [0]*len(cols)
 fin = open(filename, 'r')
 header = fin.readline()
+
 for line in fin:
 	tokens = line.split(',')
-	dataset.append(tokens)
 	for c in cols:
 		totalsum[c] += float(tokens[c])
 	count += 1
 avg = map(lambda x: x/count, totalsum)
 
-# Count standard deviation
+# Calculate standard deviation
 stdev = [0]*len(cols)
-for row in dataset:
+
+fin.seek(0) 			# Go back to the beginning of the file
+header = fin.readline()
+for line in fin:
+	tokens = line.split(',')
 	for c in cols:
 		stdev[c] += math.pow(float(row[c])-avg[c], 2)
 std = map(lambda x: math.sqrt(x/count), stdev)
