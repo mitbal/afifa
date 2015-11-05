@@ -1,45 +1,42 @@
-# Normalize single colum
+# Calulated mean and standard deviation from specified columns
 import sys
 import math
 
-if len(sys.argv) < 3:
-	print 'usage: <filename> <column_number>'
+if len(sys.argv) < 4:
+	print 'usage: <filename> <column_number> <norm_scale>'
 	sys.exit(1)
 
 filename = sys.argv[1]
-numcol = int(sys.argv[2])
-fin = open(filename, 'r')
+cols = map(lambda x: int(x), sys.argv[2].split(','))
+norm_file = sys.argv[3]
 
 dataset = []
-totalsum = 0
+totalsum = [0]*len(cols)
 count = 0
+
+# Read input and count average
+fin = open(filename, 'r')
 header = fin.readline()
 for line in fin:
 	tokens = line.split(',')
 	dataset.append(tokens)
-	totalsum += float(tokens[numcol])
+	for c in cols:
+		totalsum[c] += float(tokens[c])
 	count += 1
-avg = totalsum / count
-stdev = 0
+avg = map(lambda x: x/count, totalsum)
 
+# Count standard deviation
+stdev = [0]*len(cols)
 for row in dataset:
-	for idx, col in enumerate(row):
-		if idx == numcol:
-			stdev += math.pow((int(col)-avg), 2)
-stdev = math.sqrt(stdev/count)
+	for c in cols:
+		stdev[c] += math.pow(float(row[c])-avg[c], 2)
+std = map(lambda x: math.sqrt(x/count), stdev)
 
-for row in dataset:
-	for idx, col in enumerate(row):
-		if idx == numcol:
-			row[idx] = float(row[idx])/stdev
-
-fout = open(filename+'_n', 'w')
-fout.write(header)
-for row in dataset:
-	fout.write(','.join(map(lambda x: str(x), row)))
+# Write mean and standard deviation to file
+fout = open()
+fout.write('column,mean,std\n')
+for c in cols:
+	fout.write(str(c)+','+avg[c]+','std[c])
 
 fin.close()
 fout.close()
-print 'mean', avg
-print 'std', stdev
-print 'selesai'
