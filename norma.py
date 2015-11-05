@@ -35,10 +35,10 @@ for line in fin:
 std = map(lambda x: math.sqrt(x/count), stdev)
 
 # Write mean and standard deviation to file
-fout = open()
+fout = open(norm_file, 'w')
 fout.write('column,mean,std\n')
 for c in cols:
-	fout.write(str(c)+','+avg[c]+','std[c])
+	fout.write(','.join(lambda x: str(x), [c, avg[c], std[c]]))
 
 fin.close()
 fout.close()
