@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Get header of features after one hot encoding
 
 def is_number(s):

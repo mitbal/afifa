@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Apply one hot encoding into new file
 def is_number(s):
     try:
