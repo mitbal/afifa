@@ -10,10 +10,11 @@ def is_number(s):
 import sys
 
 if len(sys.argv) < 3:
-    print 'usage: <input_file> <output_file>'
+    print 'usage: <input_file> <header_file>'
+    sys.exit(1)
 
 fin = open(sys.argv[1], 'r')
-fheader = open('header.txt', 'w')
+fheader = open(sys.argv[2], 'w')
 symbols = set()
 
 header = fin.readline().split(',')
@@ -40,4 +41,5 @@ labels_symbols = ','.join(['c_'+x for x in symbols])
 outheader = labels_numeric+labels_symbols+',class'
 print outheader
 fheader.write(outheader+'\n')
+fheader.write(str(len(symbols)))
 fheader.close()
