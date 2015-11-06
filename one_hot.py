@@ -14,6 +14,7 @@ if len(sys.argv) < 3:
 
 fin = open(sys.argv[1], 'r')
 fout = open(sys.argv[2], 'w')
+fheader = open('header.txt', 'w')
 dataset = []
 symbols = set()
 
@@ -42,6 +43,8 @@ symbols = sorted(list(symbols))
 labels_symbols = ','.join(map(lambda x: 'c_'+x, symbols))
 outheader = labels_numeric+labels_symbols+',class'
 print outheader
+fheader.write(outheader+'\n')
+fheader.close()
 fout.write(outheader+'\n')
 for (nrow,row) in enumerate(dataset):
     sym_row = ['0']*len(symbols)
