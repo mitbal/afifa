@@ -37,6 +37,7 @@ for line in fin:
             for (idx, sym) in enumerate(symbols):
                 if sym == 'c_'+ori_header[ncol]+'_'+col:
                     sym_row[idx] = '1'
+                    break
     prow = num_row+','.join(sym_row)+','+tokens[-1]
     if nrow % 10000 == 0:
         print str(nrow)+' row(s)...'
