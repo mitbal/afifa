@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Calulated mean and standard deviation from specified columns
 import sys
 import math

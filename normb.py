@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Apply normalization using pre-calculated mean and stdev
 import sys
 

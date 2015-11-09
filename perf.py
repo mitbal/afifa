@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Perform evaluation by comparing ground truth labels and prediction
 # such as accuracy, confusion matrix, etc
 
