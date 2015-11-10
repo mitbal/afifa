@@ -7,18 +7,22 @@ import math
 import sys
 
 if len(sys.argv) < 3:
-	print 'usage: <model_file> <header_file>'
+	print 'usage: <model_file> <header_file> <optional column number>'
 	sys.exit(1)
 
 model_file = sys.argv[1]
 header_file = sys.argv[2]
+if len(sys.argv) > 3:
+    col = int(sys.argv[3])
+else:
+    col = 0
 fmodel = open(model_file, 'r')
 fheader = open(header_file, 'r')
 
 for i in xrange(6):
 	fmodel.readline()
 
-c = 0
+c = col
 weights = []
 for line in fmodel:
 	tokens = line.split()
