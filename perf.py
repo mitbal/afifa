@@ -57,6 +57,7 @@ for i in xrange(nc):
 	if(rec_denom != 0):
 		recs[i] = recs[i] / float(rec_denom)
 
+print
+print 'precision'.rjust(23), 'recall'.rjust(15)
 for i in xrange(nc):
-	print 'class', (i+1)
-	print 'precision', precs[i], 'recall', recs[i]
+	print 'class', (i+1), str(precs[i]).rjust(15), str(recs[i]).rjust(15)
