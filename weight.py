@@ -45,6 +45,15 @@ for i in xrange(len(weights)):
 		nonzero.append(weights[i])
 		nonzero_label.append(header[i])
 
-plt.bar(range(len(nonzero)), nonzero)
-plt.xticks(range(len(nonzero)), nonzero_label, rotation=30)
+index = [x-0.35 for x in range(len(nonzero))]
+fig = plt.figure()
+fig.autofmt_xdate()
+barlist = plt.bar(index, nonzero, color='g')
+plt.xlim([-0.5, index[-1]+1])
+
+for idx, nz in enumerate(nonzero):
+	if nz < 0:
+		barlist[idx].set_color('r')
+
+plt.xticks(range(len(nonzero)), nonzero_label, rotation=90)
 plt.show()
