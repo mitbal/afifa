@@ -21,6 +21,14 @@ mode = sys.argv[4]
 outheader = fheader.readline()
 num_symbols = int(fheader.readline())
 symbols = outheader.split(',')[-(num_symbols+1):-1]
+
+symbols_dict = {}
+counter = 0
+for sym in symbols:
+    symbols_dict[sym] = counter
+    counter += 1
+print symbols_dict
+
 fout.write(outheader)
 ori_header = fin.readline().split(',')
 nrow = 0
@@ -34,10 +42,10 @@ for line in fin:
         if is_number(col):
             num_row += col+','
         else:
-            for (idx, sym) in enumerate(symbols):
-                if sym == 'c_'+ori_header[ncol]+'_'+col:
-                    sym_row[idx] = '1'
-                    break
+            key = 'c_'+ori_header[ncol]+'_'+col;
+            if key in symbols_dict.keys():
+                idx = symbols_dict[key]
+                sym_row[idx] = '1'
     prow = num_row+','.join(sym_row)+','+tokens[-1]
     if nrow % 10000 == 0:
         print str(nrow)+' row(s)...'
