@@ -9,8 +9,8 @@ def is_number(s):
         return False
 
 import sys
-if len(sys.argv) < 5:
-    print 'usage: <input_file> <output_file> <header_file> <mode>'
+if len(sys.argv) < 4:
+    print 'usage: <input_file> <output_file> <header_file>'
     sys.exit(1)
 
 fin = open(sys.argv[1], 'r')
