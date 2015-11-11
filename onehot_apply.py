@@ -42,7 +42,7 @@ for line in fin:
             num_row += col+','
         else:
             key = 'c_'+ori_header[ncol]+'_'+col;
-            if key in symbols_dict.keys():
+            if key in symbols_dict:
                 idx = symbols_dict[key]
                 sym_row[idx] = '1'
     prow = num_row+','.join(sym_row)+','+tokens[-1]
