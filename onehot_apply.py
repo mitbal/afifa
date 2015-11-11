@@ -27,7 +27,6 @@ counter = 0
 for sym in symbols:
     symbols_dict[sym] = counter
     counter += 1
-print symbols_dict
 
 fout.write(outheader)
 ori_header = fin.readline().split(',')
