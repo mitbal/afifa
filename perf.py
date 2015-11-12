@@ -39,7 +39,8 @@ for i in xrange(nc):
 			acc += conf_matrix[i][j]
 		total += conf_matrix[i][j]
 
-print 'acc', (float(acc)/total)*100
+print
+print 'acc', str((float(acc)/total)*100)+'%', '('+str(acc)+'/'+str(total)+')'
 
 # Precision and recall for each classes
 precs = [0]*nc
