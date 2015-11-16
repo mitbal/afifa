@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Play around with class labels
 
 import sys
