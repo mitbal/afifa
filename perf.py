@@ -62,3 +62,11 @@ print
 print 'precision'.rjust(23), 'recall'.rjust(15)
 for i in xrange(nc):
 	print 'class', (i+1), str(precs[i]).rjust(15), str(recs[i]).rjust(15)
+
+# F measure
+fmeasure = [0]*nc
+print
+print 'f measure'
+for i in xrange(nc):
+	fmeasure[i] = (2*precs[i]*recs[i]) / (precs[i]+recs[i])
+	print 'class', (i+1), ':', fmeasure[i]
