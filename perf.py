@@ -5,6 +5,8 @@
 
 import sys
 
+epsilon = 1e-10
+
 if len(sys.argv) < 4:
 	print 'usage: <labels.txt> <prediction.txt> <number_of_class>'
 	sys.exit(1)
@@ -75,5 +77,8 @@ fmeasure = [0]*nc
 print
 print 'f measure'
 for i in xrange(nc):
-	fmeasure[i] = (2*precs[i]*recs[i]) / (precs[i]+recs[i])
+	if (precs[i]+recs[i]) > epsilon:
+		fmeasure[i] = (2*precs[i]*recs[i]) / (precs[i]+recs[i])
+	else:
+		fmeasure[i] = 0
 	print 'class', (i+1), ':', fmeasure[i]
