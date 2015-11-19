@@ -23,11 +23,18 @@ for line1 in f1.readlines():
 	j = int(float(line2[:-1]))-1
 	conf_matrix[i][j] += 1
 
-print(' '.join(map(lambda x: str(x), range(1,nc+1))))
+print
+header = ''
+for i in xrange(nc):
+	if i != nc-1:
+		header += str(i+1).rjust(12)
+	else:
+		header += str(i+1).rjust(11)
+print header
 for i in xrange(nc):
 	row = str(i+1)+' '
 	for j in xrange(nc):
-		row += str(conf_matrix[i][j]) +' '
+		row += str(conf_matrix[i][j]).rjust(10) +' '
 	print row
 
 # Calculate accuracy
