@@ -13,7 +13,6 @@ if len(sys.argv) < 5:
 
 f1 = open(sys.argv[1], 'r')
 f2 = open(sys.argv[2], 'r')
-# nc = int(sys.argv[3])
 labels = sys.argv[3:]
 
 prediction = []
@@ -22,12 +21,9 @@ for i in labels:
 	conf_matrix[i] = {}
 	for j in labels:
 		conf_matrix[i][j] = 0
-# conf_matrix = [[0]*nc for x in xrange(nc)]
 
 for line1 in f1.readlines():
 	line2 = f2.readline()
-	# i = int(float(line1[:-1]))-1
-	# j = int(float(line2[:-1]))-1
 	i = line1[:-1]
 	j = line2[:-1]
 	conf_matrix[i][j] += 1
