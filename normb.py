@@ -25,7 +25,10 @@ for line in fin:
 	tokens = line.split(',')
 	for norm in norms:
 		idx = norm[0]
-		tokens[idx] = str((float(tokens[idx])-norm[1]) / norm[2])
+        if norm[2] > 1e-10:
+		  tokens[idx] = str((float(tokens[idx])-norm[1]) / norm[2])
+        else:
+            tokens[idx] = str((float(tokens[idx])-norm[1]))
 	fout.write(','.join(tokens))
 
 fin.close()
