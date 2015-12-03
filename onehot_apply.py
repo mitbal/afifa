@@ -2,6 +2,8 @@
 
 # Apply one hot encoding into new file
 def is_number(s):
+    if s == 'Nan':
+        return False
     try:
         float(s)
         return True
